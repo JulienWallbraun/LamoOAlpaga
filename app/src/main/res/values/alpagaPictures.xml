@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="alpagaPictures">
+        <item>@drawable/alpaga1</item>
+        <item>@drawable/alpaga2</item>
+        <item>@drawable/alpaga3</item>
+        <item>@drawable/alpaga4</item>
+        <item>@drawable/alpaga5</item>
+        <item>@drawable/alpaga6</item>
+        <item>@drawable/alpaga7</item>
+        <item>@drawable/alpaga8</item>
+        <item>@drawable/alpaga9</item>
+        <item>@drawable/alpaga10</item>
+    </array>
+</resources>

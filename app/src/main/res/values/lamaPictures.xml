@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="lamaPictures">
+        <item>@drawable/lama1</item>
+        <item>@drawable/lama2</item>
+        <item>@drawable/lama3</item>
+        <item>@drawable/lama4</item>
+        <item>@drawable/lama5</item>
+        <item>@drawable/lama6</item>
+        <item>@drawable/lama7</item>
+        <item>@drawable/lama8</item>
+        <item>@drawable/lama9</item>
+        <item>@drawable/lama10</item>
+    </array>
+</resources>

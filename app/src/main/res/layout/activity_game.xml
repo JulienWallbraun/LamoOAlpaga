@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.GameActivity"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/activity_game_question_text"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="¿Lama o Alpaga?"
+        android:textAlignment="center"
+        android:textSize="100px"/>
+   <!-- <TextView
+        android:id="@+id/activity_game_picture_text"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:text="image del animal"/>
+        -->
+    <ImageView
+        android:id="@+id/activity_game_picture_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"/>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context=".Controller.GameActivity"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/activity_game_answerLama_btn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="20dp"
+        android:text="Lama"/>
+
+    <Button
+        android:id="@+id/activity_game_answerAlpaga_btn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="20dp"
+        android:text="Alpaga"/>
+
+    </LinearLayout>
+
+</LinearLayout>

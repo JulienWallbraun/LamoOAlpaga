@@ -5,10 +5,10 @@ public enum Animal {
 
     public String getAnimalString(){
         if (this == LAMA){
-            return "lama";
+            return "llama";
         }
         else{
-            return "alpaga";
+            return "alpaca";
         }
     }
 }

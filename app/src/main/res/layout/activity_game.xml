@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Controller.GameActivity"
     android:orientation="vertical">
-    
+
     <TextView
         android:id="@+id/activity_game_question_text"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="50dp"
         android:text="@string/app_question"
         android:textAlignment="center"
         android:textSize="30sp"/>
@@ -22,12 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"/>
-    <TextView
-        android:id="@+id/activity_game_url_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="URL image"/>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

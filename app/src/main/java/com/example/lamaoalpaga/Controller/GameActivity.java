@@ -1,6 +1,5 @@
 package com.example.lamaoalpaga.Controller;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,7 +33,9 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView mAppQuestion;
     private ImageView mPicture;
+    private ImageView mPictureSource;
     private Button mLamaButton;
     private Button mAlpagaButton;
     private MediaPlayer mJarabeMusic;
@@ -92,11 +94,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         //layout wiring
         setContentView(R.layout.activity_game);
-        mPicture = findViewById(R.id.activity_game_picture_text);
+
+        mAppQuestion = findViewById(R.id.activity_game_question_text);
+        mPicture = findViewById(R.id.activity_game_picture);
+        mPictureSource = findViewById(R.id.activity_game_picture_source);
         mLamaButton = findViewById(R.id.activity_game_answerLama_btn);
         mAlpagaButton = findViewById(R.id.activity_game_answerAlpaga_btn);
         mJarabeMusic = MediaPlayer.create(getApplicationContext(), R.raw.jarabe);
         mDeguelloMusic = MediaPlayer.create(getApplicationContext(), R.raw.deguello);
+
+        mAppQuestion .setText("¿"+getResources().getString(R.string.lama)+" o "+getResources().getString(R.string.alpaga)+"?");
 
         mLamaButton.setOnClickListener(this);
         mAlpagaButton.setOnClickListener(this);
@@ -105,8 +112,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAlpagaButton.setTag(Animal.ALPAGA);
 
         if (isNetworkAvailable()) {
-            getPicturesOnline(Animal.LAMA.getAnimalString(), responseListenerGetRequestLamas);
-            getPicturesOnline(Animal.ALPAGA.getAnimalString(), responseListenerGetRequestAlpagas);
+            getPicturesOnline(getAnimalString(Animal.LAMA), responseListenerGetRequestLamas);
+            getPicturesOnline(getAnimalString(Animal.ALPAGA), responseListenerGetRequestAlpagas);
         } else {
             selectPictureFromOnlinePictures();
         }
@@ -125,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else{
-            Toast.makeText(this, "No es un "+answer.getAnimalString()+" sino un "+ animalCorrectAnswer.getAnimalString()+"!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No es un "+getAnimalString(answer)+" sino un "+ getAnimalString(animalCorrectAnswer)+"!", Toast.LENGTH_SHORT).show();
             if (mJarabeMusic.isPlaying()){
                 mJarabeMusic.pause();
             }
@@ -141,10 +148,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         selectPictureFromOfflinePictures();
                     }
                     else if (lamasPicturesUrls.isEmpty()) {
-                        getPicturesOnline(Animal.LAMA.getAnimalString(), responseListenerGetRequestLamas);
+                        getPicturesOnline(getAnimalString(Animal.LAMA), responseListenerGetRequestLamas);
                     }
                     else if (alpagasPicturesUrls.isEmpty()) {
-                        getPicturesOnline(Animal.ALPAGA.getAnimalString(), responseListenerGetRequestAlpagas);
+                        getPicturesOnline(getAnimalString(Animal.ALPAGA), responseListenerGetRequestAlpagas);
                     }
                 }
                 else{
@@ -186,6 +193,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             pic = alpagasPicturesOffline.getResourceId(randomNumberPicture, 0);
         }
         mPicture.setImageResource(pic);
+        mPictureSource.setImageResource(0);
     }
 
     public void selectPictureFromOfflinePictures() {
@@ -204,10 +212,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             url = (String) alpagasPicturesUrls.get(randomNumberPicture);
         }
         Glide.with(this).load(url).into(mPicture);
+        mPictureSource.setImageResource(R.drawable.pixabay_logo);
     }
 
     private void getPicturesOnline(String animal, Response.Listener<JSONObject> responseListener){
-        String url = "https://pixabay.com/api/?key="+PIXABAY_KEY+"&q="+animal.replace(" ","+")+"&image_type=photo";
+        String url = "https://pixabay.com/api/?key="+PIXABAY_KEY+"&q="+animal.replace(" ","+")+"&image_type=photo&per_page=200";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, responseListener, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -226,6 +235,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             isAvailable = true;
         }
         return isAvailable;
+    }
+
+    public String getAnimalString(Animal animal){
+        String res = "";
+        if (animal==Animal.LAMA){
+            res = getResources().getString(R.string.lama);
+        }
+        else if (animal==Animal.ALPAGA){
+            res = getResources().getString(R.string.alpaga);
+        }
+        return res;
     }
 
 }

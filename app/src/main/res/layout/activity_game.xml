@@ -16,12 +16,17 @@
         android:text="@string/app_question"
         android:textAlignment="center"
         android:textSize="30sp"/>
+
     <ImageView
-        android:id="@+id/activity_game_picture_text"
+        android:id="@+id/activity_game_picture"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"/>
-
+    <ImageView
+        android:id="@+id/activity_game_picture_source"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
